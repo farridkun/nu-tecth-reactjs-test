@@ -15,7 +15,7 @@ export const auth = {
             const response = await api.post('/login', { name, email, password });
             return response.data;
         } catch (error) {
-            throw new Error('Email atau password salah');
+            throw new Error('Oopss, Terjadi kesalahan saat register');
         }
     },
     logout: () => {
