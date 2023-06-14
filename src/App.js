@@ -4,6 +4,8 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Home from './components/Home';
 import { getAccessToken } from './utils/LocalStorage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const isAuthenticated = !!getAccessToken();
 
@@ -17,18 +19,21 @@ const PrivateRoute = ({ element: Element, ...rest }) => {
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route
-          path="*"
-          element={
-            <PrivateRoute element={Home} />
-          }
-        />
-      </Routes>
-    </Router>
+    <div>
+      <ToastContainer />
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="*"
+            element={
+              <PrivateRoute element={Home} />
+            }
+          />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
