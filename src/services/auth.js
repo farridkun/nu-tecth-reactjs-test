@@ -17,7 +17,7 @@ export const auth = {
             const filteredUser= checkUser.filter((user) => user.email === email && user.password === password);
 
             if (filteredUser[0]) {
-                setName('name', filteredUser[0].name);
+                setName(filteredUser[0].name);
                 setAccessToken(filteredUser[0].token);
                 return filteredUser[0];
             }

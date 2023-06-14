@@ -10,11 +10,11 @@ export const getName = () => {
   return localStorage.getItem('name');
 };
 
-export const setName = (name) => {
+export const setName = (nameUser) => {
   if (!!getName()) {
     localStorage.removeItem('name');
   }
-  localStorage.setItem('name', name);
+  localStorage.setItem('name', nameUser);
 };
 
 export const removeDataStorage = () => {
