@@ -45,6 +45,7 @@ const Register = () => {
       setAccessToken(token);
 
       navigate('/');
+      window.location.reload();
     } catch (error) {
       setError(error.message);
     }
