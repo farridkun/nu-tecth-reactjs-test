@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../services/auth';
-import { setAccessToken } from '../utils/LocalStorage';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -41,8 +40,7 @@ const Register = () => {
     }
 
     try {
-      const token = await auth.register(name, email, password);
-      setAccessToken(token);
+      await auth.register(name, email, password);
 
       navigate('/');
       window.location.reload();

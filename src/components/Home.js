@@ -4,6 +4,7 @@ import AddProductForm from './AddProductForm';
 import { products } from '../services/products';
 import Navbar from './Navbar';
 import { auth } from '../services/auth';
+import { getName } from '../utils/LocalStorage';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -118,7 +119,7 @@ const Home = () => {
 
   return (
     <div className='bg-gradient-to-r from-red-500 to-orange-400'>
-      <Navbar user={localStorage.getItem('name')} onLogout={handleLogout} />
+      <Navbar user={getName()} onLogout={handleLogout} />
       <div className="container mx-auto p-4 ">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl font-bold text-white">Products</h2>

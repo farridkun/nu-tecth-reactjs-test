@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../services/auth';
-import { setAccessToken } from '../utils/LocalStorage';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -26,8 +25,7 @@ const Login = () => {
       }
 
       try {
-      const response = await auth.login(email, password);
-      setAccessToken(response.token);
+      await auth.login(email, password);
 
       navigate('/');
       window.location.reload();
@@ -42,6 +40,8 @@ const Login = () => {
         <h2 className='text-lg font-bold mb-2'>Dummy account testing:</h2>
         <p className='text-md font-bold'>Email: test@test.com</p>
         <p className='text-md font-bold'>Password: test123</p>
+        <p className='text-sm font-bold mt-2'>Info:</p>
+        <p className='text-sm'>These challenge/test using a MockAPI so all of logic may unrealistic & not being a real to use API, especially Logic Auth API</p>
       </div>
       <div className="max-w-md w-full p-6 bg-white shadow-lg rounded-md">
         <h2 className="text-2xl text-center font-bold">Nutech test - Farrid Kuntoro</h2>

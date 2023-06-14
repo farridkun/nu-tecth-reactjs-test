@@ -6,6 +6,17 @@ export const setAccessToken = (token) => {
   localStorage.setItem('access_token', token);
 };
 
-export const removeAccessToken = () => {
-  localStorage.removeItem('access_token');
+export const getName = () => {
+  return localStorage.getItem('name');
 };
+
+export const setName = (name) => {
+  if (!!getName()) {
+    localStorage.removeItem('name');
+  }
+  localStorage.setItem('name', name);
+};
+
+export const removeDataStorage = () => {
+  localStorage.clear();
+}

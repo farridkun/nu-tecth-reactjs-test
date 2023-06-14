@@ -1,27 +1,44 @@
-import { removeAccessToken } from '../utils/LocalStorage';
+import { removeDataStorage, setAccessToken, setName } from '../utils/LocalStorage';
+import { toastSuccess } from '../utils/ToastMessage';
 import api from './api';
 
 export const auth = {
-    login: async (email, password) => {
+    user: async () => {
         try {
-            const response = await api.post('/login', { email, password });
-            localStorage.setItem('name', response.data.name);
+            const response = await api.get('/login');
             return response.data;
         } catch (error) {
-            throw new Error('Email atau password salah');
+            throw new Error('Oopss, Terjadi kesalahan saat mengambil data user');
+        }
+    },
+    login: async (email, password) => {
+        try {
+            const checkUser = await auth.user()
+            const filteredUser= checkUser.filter((user) => user.email === email && user.password === password);
+
+            if (filteredUser[0]) {
+                setName('name', filteredUser[0].name);
+                setAccessToken(filteredUser[0].token);
+                return filteredUser[0];
+            }
+
+            throw Error;
+        } catch (error) {
+            throw new Error('Oopss, Email atau password salah');
         }
     },
     register: async (name, email, password) => {
         try {
             const response = await api.post('/login', { name, email, password });
-            localStorage.setItem('name', name);
+            setAccessToken(response.data.token);
+            setName('name', name);
             return response.data;
         } catch (error) {
             throw new Error('Oopss, Terjadi kesalahan saat register');
         }
     },
     logout: () => {
-        removeAccessToken();
-        localStorage.removeItem('name');
+        toastSuccess('Logout successfully')
+        removeDataStorage();
     }
 };
