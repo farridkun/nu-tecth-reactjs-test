@@ -20,7 +20,7 @@ const PrivateRoute = ({ element: Element, ...rest }) => {
 function App() {
   return (
     <div>
-      <ToastContainer />
+      <ToastContainer position='bottom-center' theme='colored' />
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
